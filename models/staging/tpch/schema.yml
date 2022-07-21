@@ -1,0 +1,21 @@
+
+version: 2
+
+models:
+    - name: stg_tpch_line_items
+      description: "Staging model for raw external line items table in S3"
+      columns:
+          - name: order_item_key
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+
+    - name: stg_tpch_orders
+      description: "Staging model for raw external orders table in S3"
+      columns:
+          - name: order_key
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
