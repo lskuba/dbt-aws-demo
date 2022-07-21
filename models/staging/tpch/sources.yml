@@ -1,0 +1,73 @@
+version: 2
+
+sources:
+  - name: tpch
+    database: dbtworkshop
+    schema: tpch_s3_data
+    loader: s3
+    loaded_at_field: collector_tstamp
+  
+    tables:
+            
+      - name: lineitem
+        external:
+            location: "s3://dbt-data-lake-112376174916/dbtworkshopdata/lineitem/" 
+            row_format: serde 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+            table_properties: "('skip.header.line.count'='1')"
+        columns:
+          - name: l_orderkey
+            data_type: varchar(255)
+            description: "primary key"
+          - name: l_partkey
+            data_type: varchar(255)
+          - name: l_suppkey
+            data_type: varchar(255)
+          - name: l_linenumber
+            data_type: varchar(255)
+          - name: l_quantity
+            data_type: varchar(255)            
+          - name: l_extendedprice
+            data_type: varchar(255)
+          - name: l_discount
+            data_type: varchar(255)
+          - name: l_tax
+            data_type: varchar(255)                       
+          - name: l_returnflag
+            data_type: varchar(255)  
+          - name: l_linestatus
+            data_type: varchar(255)   
+          - name: l_shipmode
+            data_type: varchar(255)             
+          - name: l_shipdate
+            data_type: timestamp  
+          - name: l_commitdate
+            data_type: timestamp
+          - name: l_receiptdate
+            data_type: timestamp           
+      
+      - name: orders
+        external:
+            location: "s3://dbt-data-lake-112376174916/dbtworkshopdata/orders/"      
+            row_format: serde 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+            table_properties: "('skip.header.line.count'='1')"
+        columns:
+          - name: o_orderkey
+            data_type: varchar(255)
+            description: "primary key"
+          - name: o_custkey
+            data_type: varchar(255)
+          - name: o_orderstatus
+            data_type: varchar(255)
+          - name: o_totalprice
+            data_type: varchar(255)
+          - name: o_orderdate
+            data_type: varchar(255)
+          - name: o_orderpriority
+            data_type: varchar(255)
+          - name: o_clerk
+            data_type: varchar(255)
+          - name: o_shippriority
+            data_type: varchar(255)
+          - name: o_comment
+            data_type: varchar(255)
+  
