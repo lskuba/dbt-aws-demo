@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: volte
+    database: dbtworkshop
+    schema: volte
+    loader: s3
+    tables:      
+      - name: volte
